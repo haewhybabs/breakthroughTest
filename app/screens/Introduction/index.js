@@ -1,10 +1,111 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-
+import React from 'react'
+import { View, Text, StatusBar,Image} from 'react-native'
+import { styles } from './styles';
+import Swiper from 'react-native-swiper';
+import Texts from '../../components/Texts';
+import { white } from '../../constants/colors';
+import { screenHeight } from '../../constants/dimensions';
+import Button from '../../components/Button';
 export default function index() {
+    const handlePress = ()=>{
+
+    }
     return (
-        <View>
-            <Text></Text>
+        <View style={styles.container}>
+            <StatusBar backgroundColor={white} barStyle="dark-content" />
+            <Swiper
+                autoplay
+                autoplayTimeout={4}
+                dotStyle={styles.dotStyle}
+                activeDotStyle={styles.activeDot}
+            >
+                <View style={styles.welcomeContainer}>
+                    <View style={{ paddingBottom: screenHeight(10) }}>
+                        <View style={{ alignSelf: "center" }}>
+                            <Image source={require('../../assets/images/welcome1.png')} style={styles.welcomeCover1}/>
+                        </View>
+                        <View style={styles.imageSegment}>
+                            <View style={styles.introItems}>
+                                <View style={{ alignItems: "center" }}>
+                                    <Texts weight="bold" style={styles.welcomeHeader}>
+                                        Reaction time tester
+                                    </Texts>
+                                    <Texts weight="regular" style={styles.welcomeText}>
+                                        This is a simple tool to measure your reaction time.
+                                    </Texts>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={styles.welcomeContainer}>
+                    <View style={{ paddingBottom: screenHeight(10) }}>
+                        <View style={{ alignSelf: "center" }}>
+                            <Image source={require('../../assets/images/welcomeRed.png')} style={styles.welcomeCover1}/>
+                        </View>
+                        <View style={styles.imageSegment}>
+                            <View style={styles.introItems}>
+                                <View style={{ alignItems: "center" }}>
+                                    <Texts weight="bold" style={styles.welcomeHeader}>
+                                        Red Screen
+                                    </Texts>
+                                    <Texts weight="regular" style={styles.welcomeText}>
+                                        No action is expected when the screen is red, any action will invalidate that particular round 
+                                    </Texts>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+                <View style={styles.welcomeContainer}>
+                    <View style={{ paddingBottom: screenHeight(10) }}>
+                        <View style={{ alignSelf: "center" }}>
+                            <Image source={require('../../assets/images/welcomeGreen.png')} style={styles.welcomeCover1}/>
+                        </View>
+                        <View style={styles.imageSegment}>
+                            <View style={styles.introItems}>
+                                <View style={{ alignItems: "center" }}>
+                                    <Texts weight="bold" style={styles.welcomeHeader}>
+                                        Green Screen
+                                    </Texts>
+                                    <Texts weight="regular" style={styles.welcomeText}>
+                                        When the screen changes from red to green, user is expected to click on the bottom button as soon as possible.
+                                    </Texts>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+
+                <View style={styles.welcomeContainer}>
+                    <View style={{ paddingBottom: screenHeight(10) }}>
+                        <View style={{ alignSelf: "center" }}>
+                            <Image source={require('../../assets/images/welcomeRounds.png')} style={styles.welcomeCover1}/>
+                        </View>
+                        <View style={styles.imageSegment}>
+                            <View style={styles.introItems}>
+                                <View style={{ alignItems: "center" }}>
+                                    <Texts weight="bold" style={styles.welcomeHeader}>
+                                        5 Rounds
+                                    </Texts>
+                                    <Texts weight="regular" style={styles.welcomeText}>
+                                        This will be executed for 5 rounds before the result is generated.
+                                    </Texts>
+                                </View>
+                            </View>
+                        </View>
+                    </View>
+                </View>
+            </Swiper>
+            <View>
+                <Button 
+                    title="Get Started"
+                    onPress={handlePress}
+                    loading
+                    
+                />
+            </View>
         </View>
     )
 }
