@@ -4,10 +4,10 @@ import requestProcessor from "../../api/requestProcessor";
 export const FetchRandomNumber = 'FETCH_RANDOM_NUMBER';
 export const UpdateRounds = 'UPDATE_ROUNDS';
 
-export const getRandomNumber = async() => {
+export const getRandomNumber = () => {
     return requestProcessor
     .sendGet(baseURL())
-    .then(async(res) => {
+    .then((res) => {
         if (res && String(res.status).startsWith("2")) {
            return res.data;
         }
