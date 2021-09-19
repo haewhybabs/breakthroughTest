@@ -6,16 +6,16 @@ import Texts from '../../components/Texts';
 import { white } from '../../constants/colors';
 import { screenHeight } from '../../constants/dimensions';
 import Button from '../../components/Button';
-export default function index() {
+export default function index({navigation,route}) {
     const handlePress = ()=>{
-
+        navigation.navigate('AppStack');
     }
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor={white} barStyle="dark-content" />
             <Swiper
                 autoplay
-                autoplayTimeout={4}
+                autoplayTimeout={5}
                 dotStyle={styles.dotStyle}
                 activeDotStyle={styles.activeDot}
             >
@@ -87,10 +87,10 @@ export default function index() {
                             <View style={styles.introItems}>
                                 <View style={{ alignItems: "center" }}>
                                     <Texts weight="bold" style={styles.welcomeHeader}>
-                                        5 Rounds
+                                        5 Valid Rounds
                                     </Texts>
                                     <Texts weight="regular" style={styles.welcomeText}>
-                                        This will be executed for 5 rounds before the result is generated.
+                                        This will be executed until first 5 valid rounds before the result is generated.
                                     </Texts>
                                 </View>
                             </View>
@@ -102,8 +102,6 @@ export default function index() {
                 <Button 
                     title="Get Started"
                     onPress={handlePress}
-                    loading
-                    
                 />
             </View>
         </View>

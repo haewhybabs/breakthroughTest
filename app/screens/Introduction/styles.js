@@ -1,6 +1,7 @@
 import React from "react";
 import { Platform, StyleSheet } from "react-native";
 import {
+    black,
     primaryColor,
     textColor,
     white,
@@ -55,7 +56,7 @@ export const styles = StyleSheet.create({
     welcomeText: {
         color: textColor,
         textAlign: "center",
-        fontSize: 14,
+        fontSize: 15,
         paddingHorizontal: 20,
         lineHeight:25
     },
