@@ -34,5 +34,15 @@ export const styles = StyleSheet.create({
         paddingBottom:20,
         fontSize:18,
         textAlign:'center'
+    },
+    currentRoundTitleText:{
+        color:white,
+        paddingBottom:20,
+        fontSize:30,
+        textAlign:'center',
+    },
+    errorImage:{
+        height:300,
+        width:300
     }
 });
