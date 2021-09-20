@@ -8,6 +8,7 @@ import Spinner from '../../components/Spinner';
 import * as Actions from '../../store/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import { status } from '../../constants/const_strings';
+import { useFocusEffect } from '@react-navigation/native';
 export default function index({navigation,route}) {
     
     const [showStatus,setShowStatus]=React.useState(status.red);
@@ -17,14 +18,22 @@ export default function index({navigation,route}) {
     const dispatch = useDispatch();
     const timerRef = React.useRef(null);
     const stopWatchRef = React.useRef(null);
+    const roundRef = React.useRef(0);
     
     React.useEffect(()=>{
         handleRandom();
     },[dispatch])
+    useFocusEffect(
+        React.useCallback(() => {
+            timerRef.current=null;
+            stopWatchRef.current=null;
+            roundRef.current=0;
+            handleRefresh();
+        }, [navigation])
+    );
     const handleRefresh = () => {
         setShowStatus(status.red);
-        const proceedFilter = updateRounds.filter((item)=>item.status==1);
-        if(proceedFilter.length>3){
+        if(roundRef.current>4){
             clearTimeout(timerRef.current);
             clearInterval(stopWatchRef.current);
             return navigation.navigate('Result');
@@ -68,6 +77,7 @@ export default function index({navigation,route}) {
                 status:1,
                 timeSpent:(now-startTime)/1000
             }});
+            roundRef.current=roundRef.current+1;
             handleRefresh();
         }
     }
@@ -77,7 +87,6 @@ export default function index({navigation,route}) {
             <Pressable style={{...styles.container,backgroundColor:green}} onPress={handleTouch}>
                 <Texts style={styles.currentRoundText}>Round {updateRounds.length+1}</Texts>
                 <StatusBar backgroundColor={green} barStyle="dark-content" />
-                {/* <Spinner background={white} color={white}/> */}
                 <Rounds time={mainTimer}/>
             </Pressable>
         )

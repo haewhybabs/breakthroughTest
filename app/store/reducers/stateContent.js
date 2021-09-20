@@ -9,6 +9,10 @@ export default function stateContent(state = initialState, action = {}) {
                 ...state,
                 updateRounds:[...state.updateRounds,action.payload]
             }
+        case Actions.ClearRounds:
+            return{
+                updateRounds:[]
+            }
     }
     return state
 }
