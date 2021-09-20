@@ -9,10 +9,10 @@ import Button from '../../components/Button';
 import {useDispatch, useSelector} from 'react-redux';
 import * as Actions from '../../store/actions';
 
-export default function index({navigation,props}) {
+export default function index({navigation,route}) {
     const updateRounds = useSelector(state => state.stateContent.updateRounds);
+    const activeRounds = updateRounds.filter((item)=>item.status===1);
     const dispatch = useDispatch();
-
     const handleRestart = () =>{
         dispatch({type:Actions.ClearRounds})
         navigation.navigate('ReactionTest');
@@ -24,46 +24,21 @@ export default function index({navigation,props}) {
             </View>
             <Texts weight ="bold" style={styles.headerText}>Your results are here</Texts>
             <View style={styles.resultWrapper}>
-                <View style={styles.resultContent}> 
-                    <View style={styles.resultContainer}>
-                        <AntDesign name="checkcircle" color={green2} size={25}/>
-                        <Texts weight="bold" style={styles.numberText}>0.32</Texts>
-                    </View>
-                    <Texts style={styles.roundText}>Round 1</Texts>
-                </View>
-                <View style={styles.resultContent}> 
-                    <View style={styles.resultContainer}>
-                        <AntDesign name="checkcircle" color={green2} size={25}/>
-                        <Texts weight="bold" style={styles.numberText}>0.32</Texts>
-                    </View>
-                    <Texts style={styles.roundText}>Round 1</Texts>
-                </View>
-                <View style={styles.resultContent}> 
-                    <View style={styles.resultContainer}>
-                        <AntDesign name="closecircle" color={danger} size={25}/>
-                        <Texts weight="bold" style={styles.numberText}>0.32</Texts>
-                    </View>
-                    <Texts style={styles.roundText}>Round 1</Texts>
-                </View>
-                <View style={styles.resultContent}> 
-                    <View style={styles.resultContainer}>
-                        <AntDesign name="checkcircle" color={green2} size={25}/>
-                        <Texts weight="bold" style={styles.numberText}>0.32</Texts>
-                    </View>
-                    <Texts style={styles.roundText}>Round 1</Texts>
-                </View>
-                <View style={styles.resultContent}> 
-                    <View style={styles.resultContainer}>
-                        <AntDesign name="checkcircle" color={green2} size={25}/>
-                        <Texts weight="bold" style={styles.numberText}>0.32</Texts>
-                    </View>
-                    <Texts style={styles.roundText}>Round 1</Texts>
-                </View>
+                {
+                    activeRounds.map((item,index)=>(
+                        <View style={styles.resultContent} key={index}> 
+                            <View style={styles.resultContainer}>
+                                <AntDesign name="checkcircle" color={green2} size={25}/>
+                                <Texts weight="bold" style={styles.numberText}>{item.timeSpent}</Texts>
+                            </View>
+                            <Texts style={styles.roundText}>Round {item.roundNumber}</Texts>
+                        </View>
+                    ))
+                }
             </View>
             <View style={styles.buttonWrapper}>
                 <Button title="Click here to restart" onPress={handleRestart}/>
             </View>
-            
         </View>
     )
 }

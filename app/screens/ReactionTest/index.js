@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text,StatusBar,Pressable,Image } from 'react-native'
+import { View, Text,StatusBar,Pressable,Image, Vibration } from 'react-native'
 import Rounds from './Rounds';
 import { styles } from './styles';
 import Texts from '../../components/Texts';
@@ -7,7 +7,7 @@ import { danger, green, primaryColor, white } from '../../constants/colors';
 import Spinner from '../../components/Spinner';
 import * as Actions from '../../store/actions';
 import {useDispatch, useSelector} from 'react-redux';
-import { status } from '../../constants/const_strings';
+import { status,vibrationDuration } from '../../constants/const_strings';
 import { useFocusEffect } from '@react-navigation/native';
 export default function index({navigation,route}) {
     
@@ -19,7 +19,6 @@ export default function index({navigation,route}) {
     const timerRef = React.useRef(null);
     const stopWatchRef = React.useRef(null);
     const roundRef = React.useRef(0);
-    
     React.useEffect(()=>{
         handleRandom();
     },[dispatch])
@@ -33,7 +32,10 @@ export default function index({navigation,route}) {
     );
     const handleRefresh = () => {
         setShowStatus(status.red);
+        setNow(null);
+        setStartTime(null);
         if(roundRef.current>4){
+            const activeRounds = updateRounds.filter((item)=>item.status===1);
             clearTimeout(timerRef.current);
             clearInterval(stopWatchRef.current);
             return navigation.navigate('Result');
@@ -58,6 +60,7 @@ export default function index({navigation,route}) {
     }
     const handleTouch = () =>{
         if(showStatus===status.red){
+            Vibration.vibrate(vibrationDuration);
             setShowStatus(status.invalid);
             clearTimeout(timerRef.current);
             clearInterval(stopWatchRef.current);
