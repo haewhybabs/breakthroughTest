@@ -4,10 +4,10 @@ export const FetchRandomNumber = 'FETCH_RANDOM_NUMBER';
 export const UpdateRounds = 'UPDATE_ROUNDS';
 export const ClearRounds = 'CLEAR_ROUNDS';
 
-export const getRandomNumber = () => {
+export const getRandomNumber = async() => {
     return requestProcessor
     .sendGet(baseURL())
-    .then((res) => {
+    .then(async(res) => {
         if (res && String(res.status).startsWith("2")) {
            return res.data;
         }

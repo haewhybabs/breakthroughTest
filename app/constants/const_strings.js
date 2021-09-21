@@ -3,4 +3,4 @@ export const status = {
     red:'red',
     invalid:'invalid'
 };
-export const vibrationDuration=2000;
+export const vibrationDuration=900;

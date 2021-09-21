@@ -9,6 +9,9 @@ import * as Actions from '../../store/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import { status,vibrationDuration } from '../../constants/const_strings';
 import { useFocusEffect } from '@react-navigation/native';
+import GreenScreen from './GreenScreen';
+import InvalidScreen from './InvalidScreen';
+import RedScreen from './RedScreen';
 export default function index({navigation,route}) {
     
     const [showStatus,setShowStatus]=React.useState(status.red);
@@ -19,13 +22,15 @@ export default function index({navigation,route}) {
     const timerRef = React.useRef(null);
     const stopWatchRef = React.useRef(null);
     const roundRef = React.useRef(0);
+    const invalidRef=React.useRef(true);
     React.useEffect(()=>{
+        if(invalidRef.current){
+            return handleClearOut();
+        }
         handleRandom();
-    },[dispatch])
+    },[showStatus])
     useFocusEffect(
         React.useCallback(() => {
-            timerRef.current=null;
-            stopWatchRef.current=null;
             roundRef.current=0;
             handleRefresh();
         }, [navigation])
@@ -35,9 +40,7 @@ export default function index({navigation,route}) {
         setNow(null);
         setStartTime(null);
         if(roundRef.current>4){
-            const activeRounds = updateRounds.filter((item)=>item.status===1);
-            clearTimeout(timerRef.current);
-            clearInterval(stopWatchRef.current);
+            handleClearOut();
             return navigation.navigate('Result');
         }
         handleRandom();
@@ -46,6 +49,7 @@ export default function index({navigation,route}) {
         Actions.getRandomNumber().then((randomNumber) => {
             if(randomNumber){
                 timerRef.current = setTimeout(()=>{
+                    console.log('timeout random')
                     setShowStatus(status.green);
                     handleWatchTimer();
                 },randomNumber*1000)
@@ -60,10 +64,10 @@ export default function index({navigation,route}) {
     }
     const handleTouch = () =>{
         if(showStatus===status.red){
+            invalidRef.current=true;
+            handleClearOut();
             Vibration.vibrate(vibrationDuration);
             setShowStatus(status.invalid);
-            clearTimeout(timerRef.current);
-            clearInterval(stopWatchRef.current);
             return dispatch({type:Actions.UpdateRounds,payload:{
                 roundNumber:updateRounds.length+1,
                 status:0,
@@ -84,35 +88,24 @@ export default function index({navigation,route}) {
             handleRefresh();
         }
     }
+    const handleClearOut = ()=>{
+        clearTimeout(timerRef.current);
+        clearInterval(stopWatchRef.current);
+    }
     const mainTimer = (now-startTime)/1000;
     if(showStatus===status.green){
         return(
-            <Pressable style={{...styles.container,backgroundColor:green}} onPress={handleTouch}>
-                <Texts style={styles.currentRoundText}>Round {updateRounds.length+1}</Texts>
-                <StatusBar backgroundColor={green} barStyle="dark-content" />
-                <Rounds time={mainTimer}/>
-            </Pressable>
+            <GreenScreen handleTouch={handleTouch} mainTimer={mainTimer} updateRounds={updateRounds}/>
         )
     }
     else if(showStatus===status.invalid){
         return(
-            <Pressable style={{...styles.container,backgroundColor:danger}} onPress={handleTouch}>
-                <Image source={require('../../assets/images/error.png')} style={styles.errorImage}/>
-                <Texts style={styles.currentRoundTitleText} bold>Invalid Round</Texts>
-                <Texts style={styles.currentRoundText}>You tapped the screen before the green screen</Texts>
-                <Texts style={styles.currentRoundText}>Tap the screen to continue the next round</Texts>
-                <StatusBar backgroundColor={danger} barStyle="dark-content" />
-                <Spinner background={white} color={white}/>
-            </Pressable>
+            <InvalidScreen handleTouch={handleTouch}/>
         )
     }
     else{
         return (
-            <Pressable style={styles.container} onPress={handleTouch}>
-                <Texts style={styles.currentRoundText}>Round {updateRounds.length+1}</Texts>
-                <StatusBar backgroundColor={primaryColor} barStyle="dark-content" />
-                <Spinner background={white} color={white}/>
-            </Pressable>
+           <RedScreen handleTouch={handleTouch} updateRounds={updateRounds}/>
         )
     }
     

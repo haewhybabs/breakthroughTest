@@ -17,7 +17,7 @@ export default StyleSheet.create({
     },
     resultWrapper:{
         flexDirection:'row',
-        justifyContent:'space-evenly',
+        justifyContent:'space-around',
         flexWrap:'wrap'
     },
     resultContainer:{
@@ -25,7 +25,9 @@ export default StyleSheet.create({
         flexDirection:'row'
     },
     resultContent:{
-        width:width/3-40
+        width:width/3-30,
+        paddingLeft:20,
+        paddingRight:20
     },
     circleRound:{
         height:25,
@@ -52,5 +54,33 @@ export default StyleSheet.create({
     roundText:{
         padding:5
     },
-    buttonWrapper:{justifyContent:'flex-end',flex:1}
+    buttonWrapper:{
+        justifyContent:'flex-end',
+        flex:1
+    },
+    markContainer:{
+        width:200,
+        height:200,
+        borderRadius:250/2,
+        backgroundColor:"#0350BB",
+        alignSelf:'center',
+        justifyContent:'center',
+        alignItems:'center'
+    },
+    markCover:{
+        width:120,
+        height:120,
+        borderRadius:150/2,
+        borderStartColor:'red',
+        borderWidth:20,
+        borderColor:'#5BD1BF',
+        backgroundColor:'#46BCAA',
+        alignItems:'center',
+        justifyContent:'center'
+
+    },
+    finalTextResult:{
+        color:white,
+        fontSize:30
+    }
 })
