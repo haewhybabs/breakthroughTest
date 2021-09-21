@@ -27,7 +27,12 @@ export default function index({navigation,route}) {
             <StatusBar backgroundColor={primaryColor} barStyle="dark-content" />
             <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.imageCover}>
-                    <CompleteIcon width={400} height={250}/>
+                    {/* <CompleteIcon width={400} height={250}/> */}
+                    <View style={styles.markContainer}>
+                    <View style={styles.markCover}>
+                        <Texts style={styles.finalTextResult}>{finalScore.toFixed(2)}</Texts>
+                    </View>
+                </View>
                 </View>
                 <Texts weight ="bold" style={styles.headerText}>Your results are here</Texts>
                 <View style={styles.resultWrapper}>
@@ -37,11 +42,7 @@ export default function index({navigation,route}) {
                         ))
                     }
                 </View>
-                <View style={styles.markContainer}>
-                    <View style={styles.markCover}>
-                        <Texts style={styles.finalTextResult}>{finalScore.toFixed(2)}</Texts>
-                    </View>
-                </View>
+                
             </ScrollView>
             <View style={styles.buttonWrapper}>
                 <Button title="Click here to restart" onPress={handleRestart}/>

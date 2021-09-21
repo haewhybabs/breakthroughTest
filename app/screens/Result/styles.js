@@ -26,7 +26,7 @@ export default StyleSheet.create({
         flexDirection:'row'
     },
     resultContent:{
-        width:width/3-40,
+        width:width/3-20,
         paddingLeft:10,
         paddingRight:10
     },
