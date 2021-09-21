@@ -2,7 +2,7 @@
  
 ## Introduction
 
-###React Native Application designed to measure your reaction time
+### React Native Application designed to measure your reaction time
 
 ##Operations
 * Introduction Screen
@@ -30,7 +30,7 @@ follow the following commands to get it started:
 *run react-native link react-native-vector-icons
 * start the server with "react-native run-android"
 
-###APK URL 
+### APK URL 
 https://drive.google.com/file/d/1t7CDcWTwsfs_f7V8S8E6BCrpPshBRAqN/view?usp=sharing
 
 ## Author
