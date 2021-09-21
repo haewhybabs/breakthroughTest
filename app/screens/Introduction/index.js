@@ -70,7 +70,7 @@ export default function index({navigation,route}) {
                                         Green Screen
                                     </Texts>
                                     <Texts weight="regular" style={styles.welcomeText}>
-                                        When the screen changes from red to green, user is expected to click on the bottom button as soon as possible.
+                                        When the screen changes from red to green, user is expected to tap the screen as soon as possible.
                                     </Texts>
                                 </View>
                             </View>

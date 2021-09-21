@@ -9,6 +9,7 @@ import * as Actions from '../../store/actions';
 import ResultText from './ResultText';
 import { primaryColor } from '../../constants/colors';
 export default function index({navigation,route}) {
+    
     const updateRounds = useSelector(state => state.stateContent.updateRounds);
     const activeRounds = updateRounds.filter((item)=>item.status===1);
     const dispatch = useDispatch();
@@ -24,7 +25,7 @@ export default function index({navigation,route}) {
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor={primaryColor} barStyle="dark-content" />
-            <ScrollView>
+            <ScrollView showsVerticalScrollIndicator={false}>
                 <View style={styles.imageCover}>
                     <CompleteIcon width={400} height={250}/>
                 </View>

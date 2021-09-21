@@ -1,6 +1,7 @@
 import { StyleSheet, Dimensions } from 'react-native';
 const { width, height } = Dimensions.get('window');
-import {danger, green, green2, primaryColor, white} from '../../constants/colors'
+import { screenWidth } from '../../constants/dimensions';
+import {danger, darkGreen, green, green2, lightBlue, midGreen, primaryColor, white} from '../../constants/colors'
 export default StyleSheet.create({
     container: {
         flex:1,
@@ -25,9 +26,9 @@ export default StyleSheet.create({
         flexDirection:'row'
     },
     resultContent:{
-        width:width/3-30,
-        paddingLeft:20,
-        paddingRight:20
+        width:width/3-40,
+        paddingLeft:10,
+        paddingRight:10
     },
     circleRound:{
         height:25,
@@ -56,16 +57,20 @@ export default StyleSheet.create({
     },
     buttonWrapper:{
         justifyContent:'flex-end',
-        flex:1
+        flex:1,
+        marginTop:20,
+        marginBottom:20
     },
     markContainer:{
         width:200,
         height:200,
         borderRadius:250/2,
-        backgroundColor:"#0350BB",
+        backgroundColor:lightBlue,
         alignSelf:'center',
         justifyContent:'center',
-        alignItems:'center'
+        alignItems:'center',
+        marginBottom:50,
+        marginTop:30
     },
     markCover:{
         width:120,
@@ -73,8 +78,8 @@ export default StyleSheet.create({
         borderRadius:150/2,
         borderStartColor:'red',
         borderWidth:20,
-        borderColor:'#5BD1BF',
-        backgroundColor:'#46BCAA',
+        borderColor:darkGreen,
+        backgroundColor:midGreen,
         alignItems:'center',
         justifyContent:'center'
 

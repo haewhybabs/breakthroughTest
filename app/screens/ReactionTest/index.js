@@ -1,10 +1,5 @@
 import React from 'react'
-import { View, Text,StatusBar,Pressable,Image, Vibration } from 'react-native'
-import Rounds from './Rounds';
-import { styles } from './styles';
-import Texts from '../../components/Texts';
-import { danger, green, primaryColor, white } from '../../constants/colors';
-import Spinner from '../../components/Spinner';
+import { Vibration } from 'react-native'
 import * as Actions from '../../store/actions';
 import {useDispatch, useSelector} from 'react-redux';
 import { status,vibrationDuration } from '../../constants/const_strings';

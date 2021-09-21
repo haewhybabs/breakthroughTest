@@ -1,10 +1,12 @@
 import React from 'react'
-import { View,Image,StatusBar } from 'react-native'
+import { View,Image,StatusBar} from 'react-native'
 import styles from './styles';
 import {combineColor, defaultColor, touchBlue} from '../../constants/colors';
 import LinearGradient from 'react-native-linear-gradient';
+import {useDispatch, useSelector} from 'react-redux';
 export default function Splash({navigation,route}) {
     const [mainSplash, setMainSplash] = React.useState(false);
+    const dispatch = useDispatch();
     React.useEffect(() => {
         setTimeout(() => {
             setMainSplash(true)

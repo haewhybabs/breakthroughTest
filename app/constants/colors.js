@@ -8,3 +8,6 @@ export const textColor = "#999999";
 export const green ='#7AFFB6';
 export const danger = '#ff0e0e';
 export const green2 = '#00EE00';
+export const lightBlue= '#0350BB';
+export const darkGreen = '#46BCAA';
+export const midGreen = '#5BD1BF';
