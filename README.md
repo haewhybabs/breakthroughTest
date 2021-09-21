@@ -19,6 +19,8 @@
 * React Native Navigation 6 was used
 * Result is generated until 5 valid rounds, there could be many rounds as possible
 * The project was Structured for more bigger projects and all
+* All the colors used were defined in color.js file so they can easily changed
+* Endpoints consuming was defined in action files with API configuration in api folder
 
 
 API: https://www.random.org/integers/?num=1&min=1&max=6&col=1&base=10&format=plain&rnd=new
