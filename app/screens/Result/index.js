@@ -42,7 +42,6 @@ export default function index({navigation,route}) {
                         ))
                     }
                 </View>
-                
             </ScrollView>
             <View style={styles.buttonWrapper}>
                 <Button title="Click here to restart" onPress={handleRestart}/>
